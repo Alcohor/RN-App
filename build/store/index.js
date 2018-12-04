@@ -1,4 +1,5 @@
 import goodsInfo from './goodsInfo';
-const store = { goodsInfo };
+import navigation from './Navigation';
+const store = { goodsInfo, navigation };
 export default store;
 //# sourceMappingURL=index.js.map

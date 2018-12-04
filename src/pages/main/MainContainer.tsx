@@ -5,6 +5,7 @@ import {
 import uuid from 'uuid'
 import TabNavigator from 'react-native-tab-navigator';
 import styles from './styles'
+import {inject} from 'mobx-react'
 
 const cart = require('../../../assets/images/cart.png')
 const cartActive = require('../../../assets/images/cart-active.png')
@@ -18,18 +19,27 @@ const more = require('../../../assets/images/more.png')
 const moreActive = require('../../../assets/images/more-active.png')
 
 import HomeContainer from '../home/HomeContainer'
+import Navigation from '../../store/Navigation';
 
 
 interface Props {
-    name: string
+    name: string,
+    navigation:any,
+    store?:any
 }
 
 interface State {
      selectedTab: string,
      navs:Array<any> 
 }
-
+@inject('store')
 export default class MainContainer extends Component<Props, State> { 
+   
+   static navigationOptions = {
+       title:"首页"
+   }
+   
+   
     constructor (props: any) {
         super(props)
 
@@ -59,6 +69,10 @@ export default class MainContainer extends Component<Props, State> {
                 {val.Component} 
             </TabNavigator.Item>
         )))
+    }
+
+    componentWillMount(){
+        this.props.store.navigation.setNavigation(this.props.navigation) 
     }
 
 

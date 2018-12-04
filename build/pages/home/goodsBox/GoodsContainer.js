@@ -4,8 +4,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import React, { Component } from 'react';
-import { View, Image, Text } from 'react-native';
+import React, { Component, Fragment } from 'react';
+import { View, Image, Text, TouchableWithoutFeedback } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import style from './styles';
 let GoodsContainer = class GoodsContainer extends Component {
@@ -17,7 +17,11 @@ let GoodsContainer = class GoodsContainer extends Component {
         getGoodsInfo(); //执行一下
     }
     render() {
-        return (React.createElement(View, { style: style.Container }, this.renderItem()));
+        return (React.createElement(Fragment, null,
+            React.createElement(View, { style: style.Title },
+                React.createElement(Text, { style: style.titleBar }, "\u65B0\u54C1\u9996\u53D1"),
+                React.createElement(Text, { style: style.BackBar }, "MORE>")),
+            React.createElement(View, { style: style.Container }, this.renderItem())));
     }
     renderItem() {
         if (!this.props.store.goodsInfo.goodsInfo.goodsMap)
@@ -33,7 +37,8 @@ let GoodsContainer = class GoodsContainer extends Component {
         }
         return (temp.map(val => (React.createElement(View, { key: val.id, style: style.Card },
             React.createElement(Image, { source: { uri: val.headImg }, style: style.PosterImg }),
-            React.createElement(Text, null, val.title)))));
+            React.createElement(TouchableWithoutFeedback, { onPress: () => { this.props.store.Navigation.navigation.navigate("Detail"); } },
+                React.createElement(Text, null, val.title))))));
     }
 };
 GoodsContainer = __decorate([

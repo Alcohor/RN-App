@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import MainContainer from './pages/main/MainContainer';
+import DetailContainer from './pages/detail/DetailContainer';
+import { createStackNavigator } from 'react-navigation';
 import { Provider } from 'mobx-react';
 import store from './store';
+const AppNavigator = createStackNavigator({
+    Home: { screen: MainContainer },
+    Detail: { screen: DetailContainer },
+    initialRouteName: 'Home'
+});
 export default class App extends Component {
     render() {
         return (React.createElement(Provider, { store: store },
-            React.createElement(MainContainer, { name: 'ergouzi' })));
+            React.createElement(AppNavigator, null)));
     }
 }
 //# sourceMappingURL=App.js.map

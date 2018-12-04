@@ -1,8 +1,15 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import uuid from 'uuid';
 import TabNavigator from 'react-native-tab-navigator';
 import styles from './styles';
+import { inject } from 'mobx-react';
 const cart = require('../../../assets/images/cart.png');
 const cartActive = require('../../../assets/images/cart-active.png');
 const found = require('../../../assets/images/found.png');
@@ -14,7 +21,7 @@ const mineActive = require('../../../assets/images/mine-active.png');
 const more = require('../../../assets/images/more.png');
 const moreActive = require('../../../assets/images/more-active.png');
 import HomeContainer from '../home/HomeContainer';
-export default class MainContainer extends Component {
+let MainContainer = class MainContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -32,9 +39,19 @@ export default class MainContainer extends Component {
         let { navs } = this.state;
         return (navs.map(val => (React.createElement(TabNavigator.Item, { key: val.id, selected: this.state.selectedTab === val.name, title: val.title, selectedTitleStyle: { color: "#FF4683" }, renderIcon: () => React.createElement(Image, { style: styles.icon, source: val.icon }), renderSelectedIcon: () => React.createElement(Image, { style: styles.icon, source: val.iconActive }), onPress: () => this.setState({ selectedTab: val.name }) }, val.Component))));
     }
+    componentWillMount() {
+        this.props.store.navigation.setNavigation(this.props.navigation);
+    }
     render() {
         return (React.createElement(View, { style: { flex: 1 } },
             React.createElement(TabNavigator, null, this.renderNavItem())));
     }
-}
+};
+MainContainer.navigationOptions = {
+    title: "首页"
+};
+MainContainer = __decorate([
+    inject('store')
+], MainContainer);
+export default MainContainer;
 //# sourceMappingURL=MainContainer.js.map

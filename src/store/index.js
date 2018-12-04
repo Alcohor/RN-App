@@ -1,5 +1,6 @@
 import goodsInfo from './goodsInfo'
+import navigation from './Navigation'
 
-const store = { goodsInfo }
+const store = { goodsInfo, navigation }
 
 export default store
