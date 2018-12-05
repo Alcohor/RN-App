@@ -1,6 +1,6 @@
-import goodsInfo from './goodsInfo'
-import navigation from './Navigation'
-
-const store = { goodsInfo, navigation }
+import DetailData from './DetailData';
+import goodsInfo from './goodsInfo';
+import Navigation from './Navigation';
+const store = { goodsInfo, Navigation, DetailData }
 
 export default store

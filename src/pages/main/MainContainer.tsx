@@ -72,7 +72,7 @@ export default class MainContainer extends Component<Props, State> {
     }
 
     componentWillMount(){
-        this.props.store.navigation.setNavigation(this.props.navigation) 
+        this.props.store.Navigation.setNavigation(this.props.navigation) 
     }
 
 

@@ -40,7 +40,7 @@ let MainContainer = class MainContainer extends Component {
         return (navs.map(val => (React.createElement(TabNavigator.Item, { key: val.id, selected: this.state.selectedTab === val.name, title: val.title, selectedTitleStyle: { color: "#FF4683" }, renderIcon: () => React.createElement(Image, { style: styles.icon, source: val.icon }), renderSelectedIcon: () => React.createElement(Image, { style: styles.icon, source: val.iconActive }), onPress: () => this.setState({ selectedTab: val.name }) }, val.Component))));
     }
     componentWillMount() {
-        this.props.store.navigation.setNavigation(this.props.navigation);
+        this.props.store.Navigation.setNavigation(this.props.navigation);
     }
     render() {
         return (React.createElement(View, { style: { flex: 1 } },

@@ -1,14 +1,13 @@
-import React, { Component, Fragment } from 'react'
-import { View, Image, Text, Alert,TouchableWithoutFeedback } from 'react-native'
-import { inject, observer } from 'mobx-react'
-import { any } from 'prop-types';
-import style from './styles'
+import { inject, observer } from 'mobx-react';
+import React, { Component, Fragment } from 'react';
+import { Image, Text, TouchableWithoutFeedback, View, Alert } from 'react-native';
+import style from './styles';
 
 interface Props {
     store?: any
 }
 interface State {
-
+    title: string
 }
 
 @inject('store')
@@ -16,9 +15,12 @@ interface State {
 class GoodsContainer extends Component<Props, State>{
     constructor(props: any) {
         super(props)
+        this.state = {
+            title: "新品"
+        }
     }
 
-    componentDidMount() {
+    componentDidMount() { 
         let { getGoodsInfo } = this.props.store.goodsInfo//去除MobX中异步获取商品数据的方法
         getGoodsInfo()//执行一下
     }
@@ -49,16 +51,19 @@ class GoodsContainer extends Component<Props, State>{
                 temp.push(element)
             });
         }
-
-        return (
+        let { title } = this.state
+        return ( 
             temp.map(val => (
-                <View key={val.id} style={style.Card}>
-                    <Image source={{ uri: val.headImg }} style={style.PosterImg}></Image>
-                    <TouchableWithoutFeedback onPress={()=>{this.props.store.Navigation.navigation.navigate("Detail")}}>  
+                <TouchableWithoutFeedback key={val.id} onPress={() => {
+                    this.props.store.Navigation.navigation.navigate("Detail", { title: title })
+                    this.props.store.DetailData.getDetail(val.id)  
+                }}>
+                    <View style={style.Card}>
+                         
+                         <Image source={{ uri: val.headImg }} style={style.PosterImg}></Image>
                         <Text >{val.title}</Text>
-                    </TouchableWithoutFeedback>
-                    
-                </View>
+                    </View>
+                </TouchableWithoutFeedback>  
             )
             )
         )

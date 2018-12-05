@@ -1,6 +1,5 @@
 import React,{Component} from 'react'
 import {View,Image, Alert} from 'react-native'
-import swiper from 'react-native-swiper'
 import {Fetch} from '../../../util'
 import { any } from 'prop-types';
 import Swiper from 'react-native-swiper';
@@ -25,8 +24,7 @@ export default class SwiperContainer extends Component <Props,State>{
     getData(){
         Fetch("https://shop.m.yinyuetai.com/api/carousel/indexList.json?equipmentName=WAP&num=5")
             .then( (result:any) => {    
-                this.setState({ items:result.data })
-                // Alert.alert(JSON.stringify(this.state.items))     
+                this.setState({ items:result.data })    
             })
     }
 
@@ -44,7 +42,7 @@ export default class SwiperContainer extends Component <Props,State>{
                     <Image source={{uri:"http:"+item.img}} style={styles.swiperImg}/>   
                 </View>
             ))}
-        </Swiper>
+        </Swiper>   
         )
     }
     render(){

@@ -1,9 +1,15 @@
 {
   "expo": {
-    "name": "RN-Expo",
+    "name": "音悦台商城",
     "slug": "RN-Expo",
     "privacy": "public",
     "sdkVersion": "31.0.0",
+    "ios": {
+      "bundleIdentifier": "com.alcohor.yinyuetaimall"
+    },
+    "android": {
+      "package": "com.alcohor.yinyuetaimall"
+    },
     "platforms": [
       "ios",
       "android"
@@ -16,6 +22,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    
     "updates": {
       "fallbackToCacheTimeout": 0
     },

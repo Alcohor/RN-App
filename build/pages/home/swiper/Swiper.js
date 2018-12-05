@@ -14,7 +14,6 @@ export default class SwiperContainer extends Component {
         Fetch("https://shop.m.yinyuetai.com/api/carousel/indexList.json?equipmentName=WAP&num=5")
             .then((result) => {
             this.setState({ items: result.data });
-            // Alert.alert(JSON.stringify(this.state.items))     
         });
     }
     componentDidMount() {
